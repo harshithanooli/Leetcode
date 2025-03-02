@@ -41,10 +41,7 @@ class Solution {
                 res.add(ans);
                 p2++;
         }
-        // int[][] result=new int[res.size()][2];
-        // for(int i=0;i<res.size();i++){
-        //     result[i]=res.get(i);
-        // }
+        
         return res.toArray(int[][]::new);
     }
 }
