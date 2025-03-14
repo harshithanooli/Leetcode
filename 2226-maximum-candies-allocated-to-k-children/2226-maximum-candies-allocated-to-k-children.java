@@ -3,13 +3,7 @@ class Solution {
         long count=0;
 
         for(int i=0;i<candies.length;i++){
-            int candy=candies[i];
-            if(candy>=mid){
-                count=count+candy/mid;                
-                if(count>=k){
-                    return true;
-                }
-            }
+            count=count+candies[i]/mid;                
             if(count>=k){
                 return true;
             }
