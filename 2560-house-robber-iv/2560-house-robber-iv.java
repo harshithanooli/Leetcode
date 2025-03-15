@@ -1,35 +1,35 @@
 class Solution {
     public boolean getMinCapability(int[] nums, int k,int i, int c, int possibleMid){
-        // if(c>=k){
-        //     return true;         
-        // }
-        // if(i<nums.length ){
+        if(c>=k){
+            return true;         
+        }
+        if(i<nums.length ){
             
-        //     if( nums[i]<=possibleMid && getMinCapability(nums, k, i+2, c+1,possibleMid)){
-        //         return true;
-        //     }
+            if( nums[i]<=possibleMid && getMinCapability(nums, k, i+2, c+1,possibleMid)){
+                return true;
+            }
 
-        //     if(getMinCapability(nums,k, i+1, c, possibleMid))
-        //     return true;
+            if(getMinCapability(nums,k, i+1, c, possibleMid))
+            return true;
                 
-        // }
-        // return false;
+        }
+        return false;
         
 
-        for(int j=0;j<nums.length;j++){
-            if(nums[j]<=possibleMid){
-                c++;
-                j++;
-            }
-            if(c>=k){
-                return true;
-            }            
-        }
+        // for(int j=0;j<nums.length;j++){
+        //     if(nums[j]<=possibleMid){
+        //         c++;
+        //         j++;
+        //     }
+        //     if(c>=k){
+        //         return true;
+        //     }            
+        // }
 
-        if(c>=k){
-            return true;
-        } 
-        return false;
+        // if(c>=k){
+        //     return true;
+        // } 
+        // return false;
         
     }
     public int minCapability(int[] nums, int k) {
