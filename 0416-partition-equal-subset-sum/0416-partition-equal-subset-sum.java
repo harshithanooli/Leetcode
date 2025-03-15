@@ -7,23 +7,19 @@ class Solution {
         if(sum%2!=0)
             return false;
 
-        boolean dp[][]=new boolean[nums.length][sum/2+1];
+        boolean prev[]=new boolean[sum/2+1];
+        boolean curr[]=new boolean[sum/2+1];
         if(nums[0]<=sum/2){
-            dp[0][nums[0]]=true;
+            prev[nums[0]]=true;
         }
-        for(int i=0;i<=nums.length-1;i++){
-            dp[i][0]=true;
-        }
+        
 
         for(int i=1;i<=nums.length-1;i++){
-            for(int j=1;j<=sum/2;j++){
+            for(int j=sum/2;j>=nums[i];j--){
                 boolean notTake=dp[i-1][j];
 
-                boolean take=false;
-
-                if(nums[i]<=j){
-                    take=dp[i-1][j-nums[i]];
-                }
+                boolean take=dp[i-1][j-nums[i]];
+                
 
                 dp[i][j]=take||notTake;
             }     
