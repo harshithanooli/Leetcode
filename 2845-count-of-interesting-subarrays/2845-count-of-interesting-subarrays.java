@@ -8,12 +8,12 @@ class Solution {
         
 
         for(int i=0;i<nums.size();i++){
-            if(nums.get(i)%modulo==k){
-                pSum=pSum+1;
-            }
-            if(hm.containsKey((pSum-k+modulo)%modulo)){
-                res=res+hm.get((pSum-k+modulo)%modulo);
-            }
+            
+                pSum=pSum+(nums.get(i)%modulo==k ? 1:0);
+            
+            
+                res=res+hm.getOrDefault((pSum-k+modulo)%modulo,0L);
+            
             
             hm.put(pSum%modulo, hm.getOrDefault(pSum%modulo,0L)+1L);
         }
