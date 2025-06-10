@@ -16,9 +16,9 @@ class Solution {
                 }
                 l++;
             }
-            if(count<=k){
+          
                 res=res + r-l+1;
-            }
+            
             r++;
             
         }
