@@ -1,28 +1,31 @@
 class Solution {
-    public int numberOfSubarrays(int[] nums, int k) {
-        for(int i=0;i<nums.length;i++){
-            if(nums[i]%2==0){
-                nums[i]=0;
+    public int getCount(int[] nums, int k){
+        int res=0;
+        int count=0;
+
+        int r=0, l=0, n=nums.length;
+
+        while(r<n){
+            if(nums[r]%2==1){
+                count++;
             }
-            else{
-                nums[i]=1;
+
+            while(count>k){
+                if(l<n && nums[l]%2==1){
+                    count--;
+                }
+                l++;
             }
+            if(count<=k){
+                res=res + r-l+1;
+            }
+            r++;
+            
         }
-        return getCount(nums, k) - getCount(nums, k-1);
+
+        return res;
     }
-    public static int getCount(int[] nums, int goal){
-        int l=0, r=0, sum=0, count=0;
-        if(goal<0)
-        return 0;
-        while(r<nums.length){
-            sum=sum+nums[r];
-            while(sum>goal){
-                sum=sum-nums[l];
-                l=l+1;
-            }
-            count=count+(r-l+1);
-            r=r+1;
-        }
-        return count;
+    public int numberOfSubarrays(int[] nums, int k) {
+        return getCount(nums, k)-getCount(nums, k-1);
     }
 }
