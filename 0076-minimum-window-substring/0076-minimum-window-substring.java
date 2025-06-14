@@ -1,19 +1,12 @@
 class Solution {
 
-    public boolean check(HashMap<Character, Integer> sMap, HashMap<Character, Integer> tMap){
-        for(Character ch:tMap.keySet()){
-            if(!sMap.containsKey(ch) || sMap.get(ch)<tMap.get(ch))
-                return false;
-        }
-        return true;
-    }
     public String minWindow(String s, String t) {
         if(s.equals(t))
         return s;
         else if (s.length()<t.length()){
             return "";
         }
-        String res="";
+        
         int minLength=Integer.MAX_VALUE, al=-1, ar=-1;
         HashMap<Character, Integer> sMap=new HashMap<>();
         HashMap<Character, Integer> tMap = new HashMap<>();
@@ -28,8 +21,10 @@ class Solution {
             count++;
 
             while(count==tLength){
-                if(res.equals("") || i-l+1< res.length()){
-                    res=s.substring(l, i+1);
+                if(i-l+1< minLength){
+                    minLength=i-l+1;
+                    al=l;
+                    ar=i;
                 }
                 sMap.put(s.charAt(l), sMap.get(s.charAt(l))-1);
                 if(tMap.containsKey(s.charAt(l)) && sMap.get(s.charAt(l))<tMap.get(s.charAt(l))){
@@ -40,7 +35,9 @@ class Solution {
             
             
         }
-
-        return res;
+        if(al==-1 || ar==-1){
+            return "";
+        }
+        return s.substring(al, ar+1);
     }
 }
