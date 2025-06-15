@@ -1,9 +1,12 @@
 class Solution {
     public boolean isDiffPossible(int[] nums, int diff, int n, int p){
-        int minPairs=0;
-        for(int i=0;i<n-1;i++){
+        int minPairs=0,i=0;
+        while(i<n-1){
             if(Math.abs(nums[i+1]-nums[i]) <= diff){
                 minPairs++;
+                i=i+2;
+            }
+            else{
                 i=i+1;
             }
             if(minPairs>=p){
