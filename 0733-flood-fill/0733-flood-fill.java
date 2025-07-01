@@ -30,7 +30,7 @@ class Solution {
             for(int i=0;i<dirRow.length;i++){
                 if(x+dirRow[i]>=0 && x+dirRow[i]<row && y+dirCol[i]>=0 && y+dirCol[i]<col && res[x+dirRow[i]][y+dirCol[i]]==ogColor){
                     q.add(Arrays.asList(x+dirRow[i], y+dirCol[i]));
-                //    res[x+dirRow[i]][y+dirCol[i]]=color;
+                    res[x+dirRow[i]][y+dirCol[i]]=color;
                 }
             }
 
