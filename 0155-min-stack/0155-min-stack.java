@@ -1,10 +1,8 @@
 class MinStack {
     Stack<int[]> stack;
-    //Stack<Integer> minStack;
 
     public MinStack() {
         stack  = new Stack<int[]>();
-      //  minStack  = new Stack<>();
     }
     
     public void push(int val) {
@@ -15,18 +13,11 @@ class MinStack {
             int min = Math.min(stack.peek()[1], val);
             stack.push(new int[] { val, min});
         }
-        // stack.push(val);
-        // if(!minStack.isEmpty()){
-        //     minStack.push((minStack.peek() <= val) ? minStack.peek() : val);
-        // }
-        // else{
-        //     minStack.push(val);
-        // }
+        
     }
     
     public void pop() {
         stack.pop();
-       // minStack.pop();
     }
     
     public int top() {
