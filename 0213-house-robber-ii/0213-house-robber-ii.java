@@ -1,19 +1,22 @@
 class Solution {
 
     public int getMaxAmount(int[] arr, int n){
-        int[] dp=new int[n-1];
-        dp[0]=arr[0];
+        //int[] dp=new int[n-1];
+        int prev=arr[0];
+        int prev2=0, curr=0;
 
         for(int i=1;i<n-1;i++){
             int pick=arr[i];
             if(i>1){
-                pick = (dp[i-2]+pick);
+                pick = (prev2+pick);
             }
-            int notPick=dp[i-1];
+            int notPick=prev;
 
-            dp[i]=Math.max(pick, notPick);
+            curr=Math.max(pick, notPick);
+            prev2=prev;
+            prev=curr;
         }
-        return dp[n-2];
+        return prev;
 
     }
     public int rob(int[] nums) {
