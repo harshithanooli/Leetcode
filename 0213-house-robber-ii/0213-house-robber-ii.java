@@ -31,8 +31,7 @@ class Solution {
             firstIncl[i]=nums[i];
             secondIncl[i]=nums[i+1];
         }
-        System.out.println(Arrays.toString(firstIncl));
-        System.out.println(Arrays.toString(secondIncl));
+        
         int oneEnd = getMaxAmount(firstIncl,n);
         int otherEnd = getMaxAmount(secondIncl,n);
         System.out.println(oneEnd + " : " +otherEnd);
