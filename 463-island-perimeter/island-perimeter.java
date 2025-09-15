@@ -11,7 +11,7 @@ class Solution {
 
     public void dfs(boolean[][] visited, int[][] grid, int i, int j, int[] result){
         Pair p =new Pair(i,j);
-        if(visited[i][j]){
+        if(visited[i][j] || grid[i][j]==0){
             return;
         }
         if(grid[i][j]==1){
