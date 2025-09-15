@@ -9,7 +9,7 @@ class Pair{
 
 class Solution {
 
-    public void dfs(boolean[][] visited, int[][] grid, HashMap<Pair, Integer> hm, int i, int j, int[] result){
+    public void dfs(boolean[][] visited, int[][] grid, int i, int j, int[] result){
         Pair p =new Pair(i,j);
         if(visited[i][j]){
             return;
@@ -26,22 +26,22 @@ class Solution {
             int b=j+dirCol[k];
 
             if(a<0 || a>grid.length-1){
-                hm.put(p, hm.getOrDefault(p,0)+1);
+           
                 result[0]=result[0]+1;
             }
 
             if(b<0 || b>grid[0].length-1){
-                hm.put(p, hm.getOrDefault(p,0)+1);
+            
                 result[0]=result[0]+1;
             }
 
             if(a>=0 && b>=0 && a<grid.length && b<grid[0].length && grid[a][b]==0){
-                hm.put(p, hm.getOrDefault(p,0)+1);
+            
                 result[0]=result[0]+1;
             }
 
             if(a>=0 && b>=0 && a<grid.length && b<grid[0].length && grid[a][b]==1){
-                dfs(visited, grid,hm,a,b,result);
+                dfs(visited, grid,a,b,result);
             }
         }
         return;
@@ -49,21 +49,17 @@ class Solution {
     public int islandPerimeter(int[][] grid) {
         
         boolean[][] visited=new boolean[grid.length][grid[0].length];
-        HashMap<Pair, Integer> hm = new HashMap<>();
+        
         int[] result={0};
         for(int i=0;i<grid.length;i++){
             for(int j=0;j<grid[0].length;j++)
             {
                 if(grid[i][j]==1){
-                    dfs(visited, grid, hm, i, j, result);
+                    dfs(visited, grid, i, j, result);
                 }
             }
         }
-        int res = 0;
-        for(int value :hm.values()){
-            res=res+value;
-        }
-
+       
         return result[0];
     }
 }
