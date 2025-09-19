@@ -1,27 +1,16 @@
 class Spreadsheet {
-    ArrayList<ArrayList<Integer>> sheet;
+    HashMap<String,Integer> sheet;
 
     public Spreadsheet(int rows) {
-        sheet = new ArrayList<ArrayList<Integer>>();
-        for(int i=0;i<rows+1;i++){
-            sheet.add(new ArrayList<Integer>());
-            for(int j=0;j<27;j++){
-                sheet.get(i).add(0);
-            }
-        }
+        sheet = new HashMap<String,Integer>();
     }
     
     public void setCell(String cell, int value) {
-       // System.out.println(sheet);
-        int column = Integer.valueOf(cell.charAt(0)-'A');
-        int row = Integer.valueOf(cell.substring(1,cell.length()));
-        sheet.get(row).set(column, value); 
+        sheet.put(cell,value); 
     }
     
     public void resetCell(String cell) {
-        int column = Integer.valueOf(cell.charAt(0)-'A');
-        int row = Integer.valueOf(cell.substring(1,cell.length()));
-        sheet.get(row).set(column, 0); 
+        sheet.put(cell,0); 
     }
     
     public int getValue(String formula) {
@@ -32,9 +21,8 @@ class Spreadsheet {
         String secondOperand = formula.substring(plusIndex+1, formula.length());
 
         if(firstOperand.charAt(0)>='A' && firstOperand.charAt(0)<='Z'){
-            int column = Integer.valueOf(firstOperand.charAt(0)-'A');
-            int row =Integer.valueOf(firstOperand.substring(1,firstOperand.length()));
-            result = sheet.get(row).get(column);
+            
+            result = sheet.getOrDefault(firstOperand,0);
         }
         else{
             int number = Integer.valueOf(firstOperand);
@@ -42,9 +30,8 @@ class Spreadsheet {
         }
 
          if(secondOperand.charAt(0)>='A' && secondOperand.charAt(0)<='Z'){
-            int column = Integer.valueOf(secondOperand.charAt(0)-'A');
-            int row =Integer.valueOf(secondOperand.substring(1,secondOperand.length()));
-            result += sheet.get(row).get(column);
+            
+            result += sheet.getOrDefault(secondOperand,0);
         }
         else{
             int number = Integer.valueOf(secondOperand);
